@@ -6,6 +6,6 @@ public class HelloWorld {
     }
 
     public static String getMessage() {
-        return "Hello from Jenkins 2!";
+        return "Hello from Jenkins 3!";
     }
 }
