@@ -8,6 +8,6 @@ public class HelloWorldTest {
     
     @Test
     void testGetMessage() {
-        assertEquals("Hello from Jenkins!", HelloWorld.getMessage());
+        assertEquals("Hello from Jenkins 2!", HelloWorld.getMessage());
     }
 }
