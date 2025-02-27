@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .result-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .result-value {
+            font-size: 2em;
+            text-align: center;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+        .category {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .category-underweight { color: #3498db; }
+        .category-normal { color: #2ecc71; }
+        .category-overweight { color: #f39c12; }
+        .category-obese { color: #e74c3c; }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .info-label {
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-secondary {
+            background-color: #7f8c8d;
+        }
+        .btn-secondary:hover {
+            background-color: #6c7a7d;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .actions .btn {
+            flex: 1;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Result</h1>
+    
+    <div class="result-container">
+        <div class="result-value" th:text="${#numbers.formatDecimal(bmiForm.bmiResult, 1, 1)}">25.0</div>
+        
+        <div th:class="'category ' + (${bmiForm.bmiCategory == 'Underweight'} ? 'category-underweight' : 
+                                     (${bmiForm.bmiCategory == 'Normal weight'} ? 'category-normal' : 
+                                     (${bmiForm.bmiCategory == 'Overweight'} ? 'category-overweight' : 'category-obese')))" 
+             th:text="${bmiForm.bmiCategory}">
+            Normal Weight
+        </div>
+        
+        <div class="input-details">
+            <div class="info-row">
+                <span class="info-label">Weight:</span>
+                <span th:text="${bmiForm.weight} + (${bmiForm.unit == 'metric'} ? ' kg' : ' lbs')"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Height:</span>
+                <span th:text="${bmiForm.height} + (${bmiForm.unit == 'metric'} ? ' m' : ' inches')"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="actions">
+        <a href="/" class="btn">Calculate Another</a>
+        <a href="/history" class="btn btn-secondary">View History</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculation History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .category-underweight { color: #3498db; }
+        .category-normal { color: #2ecc71; }
+        .category-overweight { color: #f39c12; }
+        .category-obese { color: #e74c3c; }
+        .empty-history {
+            text-align: center;
+            margin: 40px 0;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculation History</h1>
+    
+    <a href="/" class="btn">Back to Calculator</a>
+    
+    <div th:if="${#lists.isEmpty(records)}" class="empty-history">
+        <p>No BMI calculations have been recorded yet.</p>
+    </div>
+    
+    <table th:if="${not #lists.isEmpty(records)}">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>BMI</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="record : ${records}">
+                <td th:text="${#temporals.format(record.calculatedAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${record.weight} + (${record.unit == 'metric'} ? ' kg' : ' lbs')"></td>
+                <td th:text="${record.height} + (${record.unit == 'metric'} ? ' m' : ' inches')"></td>
+                <td th:text="${#numbers.formatDecimal(record.bmiResult, 1, 1)}"></td>
+                <td th:class="(${record.bmiCategory == 'Underweight'} ? 'category-underweight' : 
+                              (${record.bmiCategory == 'Normal weight'} ? 'category-normal' : 
+                              (${record.bmiCategory == 'Overweight'} ? 'category-overweight' : 'category-obese')))"
+                    th:text="${record.bmiCategory}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

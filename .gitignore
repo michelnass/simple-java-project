@@ -1,0 +1,27 @@
+# Compiled class files
+*.class
+
+# Build directories
+/target/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Mac OS files
+.DS_Store
+
+# H2 Database files
+*.db
+*.mv.db
+*.trace.db
+
+# Logs
+*.log
