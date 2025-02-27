@@ -4,7 +4,7 @@ A simple Java-based web application for calculating Body Mass Index (BMI) with d
 
 ## Features
 
-- Calculate BMI using metric units (kg, meters) or imperial units (pounds, inches)
+- Calculate BMI using metric units (kg, centimeters) or imperial units (pounds, inches)
 - View BMI category (Underweight, Normal weight, Overweight, Obese)
 - Save calculation history to database
 - View calculation history in chronological order
