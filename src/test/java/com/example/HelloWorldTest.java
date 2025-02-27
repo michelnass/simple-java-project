@@ -14,16 +14,18 @@ public class HelloWorldTest {
     
     @Test
     void testCalculateBmi() {
-        // Normal case
-        assertEquals(24.69, HelloWorld.calculateBmi(80, 1.8), 0.01);
+        // Normal case - 80kg, 180cm
+        assertEquals(24.69, HelloWorld.calculateBmi(80, 180), 0.01);
         
         // Edge cases - using the actual calculated value
-        assertEquals(18.59, HelloWorld.calculateBmi(50, 1.64), 0.01);
-        assertEquals(29.90, HelloWorld.calculateBmi(86.4, 1.7), 0.01);
+        // 50kg, 164cm
+        assertEquals(18.59, HelloWorld.calculateBmi(50, 164), 0.01);
+        // 86.4kg, 170cm
+        assertEquals(29.90, HelloWorld.calculateBmi(86.4, 170), 0.01);
         
         // Should throw exception for invalid inputs
         assertThrows(IllegalArgumentException.class, () -> {
-            HelloWorld.calculateBmi(0, 1.8);
+            HelloWorld.calculateBmi(0, 180);
         });
         
         assertThrows(IllegalArgumentException.class, () -> {

@@ -78,7 +78,7 @@
             <tr th:each="record : ${records}">
                 <td th:text="${#temporals.format(record.calculatedAt, 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${record.weight} + (${record.unit == 'metric'} ? ' kg' : ' lbs')"></td>
-                <td th:text="${record.height} + (${record.unit == 'metric'} ? ' m' : ' inches')"></td>
+                <td th:text="${record.height} + (${record.unit == 'metric'} ? ' cm' : ' inches')"></td>
                 <td th:text="${#numbers.formatDecimal(record.bmiResult, 1, 1)}"></td>
                 <td th:class="(${record.bmiCategory == 'Underweight'} ? 'category-underweight' : 
                               (${record.bmiCategory == 'Normal weight'} ? 'category-normal' : 

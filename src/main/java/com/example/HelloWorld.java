@@ -10,15 +10,17 @@ public class HelloWorld {
     }
     
     /**
-     * Calculate BMI using weight in kilograms and height in meters
+     * Calculate BMI using weight in kilograms and height in centimeters
      * @param weightKg weight in kilograms
-     * @param heightM height in meters
+     * @param heightCm height in centimeters
      * @return BMI value
      */
-    public static double calculateBmi(double weightKg, double heightM) {
-        if (heightM <= 0 || weightKg <= 0) {
+    public static double calculateBmi(double weightKg, double heightCm) {
+        if (heightCm <= 0 || weightKg <= 0) {
             throw new IllegalArgumentException("Weight and height must be positive values");
         }
+        // Convert centimeters to meters for the BMI formula
+        double heightM = heightCm / 100.0;
         return weightKg / (heightM * heightM);
     }
     
